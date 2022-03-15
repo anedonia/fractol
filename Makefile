@@ -25,7 +25,7 @@ CFLAGS	= -Wall -Wextra -Werror -g3
 all:		${NAME}
 
 .c.o:
-			${CC} ${CFLAGS} -I/usr/include -Imlx -c $< -o ${<:.c=.o}
+			${CC} -I/usr/include -Imlx -c $< -o ${<:.c=.o}
 
 # pour mac
 # %.o: %.c

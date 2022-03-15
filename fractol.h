@@ -12,12 +12,12 @@
 
 #ifndef FRACT_OL
 # define FRACT_OL
-# include <mlx.h>
+# include "mlx/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
 
-typedef	struct s_data;
+typedef	struct s_data
 {
 	void *img;
 	char *addr;
@@ -27,6 +27,7 @@ typedef	struct s_data;
 }	t_data;
 
 //printf : 
+
 int		ft_printf(const char *str, ...);
 void	to_hex(unsigned long nb, int up, int p, int *res);
 int		ft_putchar(int c);
