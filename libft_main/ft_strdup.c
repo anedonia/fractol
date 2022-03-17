@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 16:33:48 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/16 15:09:05 by ldevy            ###   ########.fr       */
+/*   Created: 2021/11/26 16:27:13 by ldevy             #+#    #+#             */
+/*   Updated: 2021/12/06 17:43:35 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL
-# define FRACT_OL
-# include "mlx/mlx.h"
-# include "libft_main/libft.h"
-# include "printf_main/ft_printf.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-typedef	struct s_data
+static char	*ft_strcpy(char *dest, const char *src)
 {
-	void *img;
-	void *mlx;
-	void *mlx_win;
-	char type;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-}	t_data;
+	size_t	i;
 
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = src[i];
+	return (dest);
+}
 
-#endif
+char	*ft_strdup(const char *s)
+{
+	char	*new;
+
+	new = malloc((ft_strlen(s) + 1) * sizeof(*new));
+	if (!new)
+		return (NULL);
+	new = ft_strcpy(new, s);
+	return (new);
+}

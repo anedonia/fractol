@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 16:33:48 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/16 15:09:05 by ldevy            ###   ########.fr       */
+/*   Created: 2021/12/01 12:27:23 by ldevy             #+#    #+#             */
+/*   Updated: 2021/12/07 15:45:10 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL
-# define FRACT_OL
-# include "mlx/mlx.h"
-# include "libft_main/libft.h"
-# include "printf_main/ft_printf.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-typedef	struct s_data
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	void *img;
-	void *mlx;
-	void *mlx_win;
-	char type;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-}	t_data;
+	char	*new;
+	size_t	i;
+	size_t	j;
 
-
-#endif
+	if (!s1 || !s2)
+		return (NULL);
+	new = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(*s1));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		new[i] = s2[j];
+		i++;
+		j++;
+	}
+	new[i] = '\0';
+	return (new);
+}

@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 16:33:48 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/16 15:09:05 by ldevy            ###   ########.fr       */
+/*   Created: 2021/11/29 15:24:16 by ldevy             #+#    #+#             */
+/*   Updated: 2021/12/08 21:11:21 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL
-# define FRACT_OL
-# include "mlx/mlx.h"
-# include "libft_main/libft.h"
-# include "printf_main/ft_printf.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-typedef	struct s_data
+char	*ft_strchr(const char *s, int c)
 {
-	void *img;
-	void *mlx;
-	void *mlx_win;
-	char type;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-}	t_data;
+	size_t	i;
 
-
-#endif
+	i = 0;
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] == (char) c)
+			return ((char *) s + i);
+		i++;
+	}
+	return (NULL);
+}

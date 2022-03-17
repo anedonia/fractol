@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 16:33:48 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/16 15:09:05 by ldevy            ###   ########.fr       */
+/*   Created: 2021/12/02 13:55:39 by ldevy             #+#    #+#             */
+/*   Updated: 2021/12/07 15:44:57 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL
-# define FRACT_OL
-# include "mlx/mlx.h"
-# include "libft_main/libft.h"
-# include "printf_main/ft_printf.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-typedef	struct s_data
+void	ft_putstr_fd(char *s, int fd)
 {
-	void *img;
-	void *mlx;
-	void *mlx_win;
-	char type;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-}	t_data;
+	size_t	i;
+	size_t	size;
 
-
-#endif
+	if (!s || !fd)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		size = sizeof(s[i]);
+		write (fd, &s[i], size);
+		i++;
+	}
+}

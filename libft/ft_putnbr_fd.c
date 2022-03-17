@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 16:33:48 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/16 15:09:05 by ldevy            ###   ########.fr       */
+/*   Created: 2021/12/02 14:38:26 by ldevy             #+#    #+#             */
+/*   Updated: 2021/12/06 14:52:18 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL
-# define FRACT_OL
-# include "mlx/mlx.h"
-# include "libft_main/libft.h"
-# include "printf_main/ft_printf.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-typedef	struct s_data
+void	ft_putnbr_fd(int n, int fd)
 {
-	void *img;
-	void *mlx;
-	void *mlx_win;
-	char type;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-}	t_data;
+	long	nb;
+	char	c;
 
-
-#endif
+	nb = n;
+	if (nb < 0)
+	{
+		nb = -nb;
+		write(fd, "-", 1);
+	}
+	if (nb > 9)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+		nb %= 10;
+	}
+	c = (nb % 10) + 48;
+	write(fd, &c, 1);
+}

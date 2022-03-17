@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= srcs/main.c, 
+SRCS	= srcs/main.c
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -19,6 +19,8 @@ NAME 	= fractol
 RM		= rm -f
 
 CC		= cc
+
+LIBS	= /libft_main/libft.a, /printf_main/libftprintf.a
 
 CFLAGS	= -Wall -Wextra -Werror -g3
 

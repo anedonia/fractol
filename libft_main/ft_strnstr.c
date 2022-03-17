@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 16:33:48 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/16 15:09:05 by ldevy            ###   ########.fr       */
+/*   Created: 2021/11/25 13:15:56 by ldevy             #+#    #+#             */
+/*   Updated: 2021/12/06 14:54:10 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL
-# define FRACT_OL
-# include "mlx/mlx.h"
-# include "libft_main/libft.h"
-# include "printf_main/ft_printf.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-typedef	struct s_data
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	void *img;
-	void *mlx;
-	void *mlx_win;
-	char type;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-}	t_data;
+	size_t	i;
+	size_t	j;
+	size_t	temp_len;
 
-
-#endif
+	i = 0;
+	if (!little[i])
+		return ((char *) big);
+	while (big[i] && len > 0)
+	{
+		j = 0;
+		temp_len = len;
+		while (big[i + j] == little[j] && temp_len > 0)
+		{
+			j++;
+			temp_len--;
+			if (!little[j])
+				return ((char *) big + i);
+		}
+		len--;
+		i++;
+	}
+	return (NULL);
+}

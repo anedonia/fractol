@@ -13,13 +13,11 @@
 #include "../fractol.h"
 
 
-
-
 int	main(int argc, char **argv)
 {
 	t_data set;
 	
-	if (argc == 1 || (argv[1][0] != 'j' && argv[1][0] != 'm'))
+	if (argc == 1 || (argv[1] && argv[1][0] != 'm'))
 		return (0);
 	set.type = argv[1][0];
 	first(&set);
