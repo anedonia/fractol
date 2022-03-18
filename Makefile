@@ -6,11 +6,11 @@
 #    By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 17:24:43 by ldevy             #+#    #+#              #
-#    Updated: 2022/03/16 14:50:51 by ldevy            ###   ########.fr        #
+#    Updated: 2022/03/18 12:21:57 by ldevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= srcs/main.c
+SRCS	= srcs/main.c, srcs/first/first.c
 
 OBJS	= ${SRCS:.c=.o}
 
