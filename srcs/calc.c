@@ -6,7 +6,7 @@
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:54:15 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/22 18:45:42 by ldevy            ###   ########.fr       */
+/*   Updated: 2022/03/23 16:14:32 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 void ft_calc(t_data *set)
 {
 	set->x = 0;
-	mandelbrot_init(set);
-	while (set->x < 1000)
+	while (set->x < 400)
 	{
 		set->y = 0;
-		while (set->y < 800)
+		while (set->y < 400)
 		{
 			ft_mandelbrot(set);
 			set->y++;
@@ -33,10 +32,27 @@ void ft_calc(t_data *set)
 
 void	mandelbrot_init(t_data *set)
 {
-	set->x_cadre = -4;
-	set->y_cadre = -2;
-	set->ite_max = 400;
-	set->zoom = 200;
+	set->x_cadre = -2;
+	set->y_cadre = -0.99;
+	set->ite_max = 200;
+	set->zoom = 1000;
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	ft_color_int(float ite)
+{
+	float r;
+	float g;
+	float b;
+	
+	r = 255 * ((1 - cos(ite / log(2))) / 2);
+	g = 255 * ((1 - cos(ite * (1 / ((3 * sqrt(2)) / log(2))))) / 2);
+	b = 255 * ((1 - cos(ite * (1 / ((7 * pow(3, 1/8)) / log(2))))) / 2);
+	return (create_trgb(0, r, g, b));
 }
 
 int	ft_mandelbrot(t_data *set)
@@ -49,7 +65,7 @@ int	ft_mandelbrot(t_data *set)
 	y = 0;
 	set->c_r = (float)set->x / (float)set->zoom + set->x_cadre;
 	set->c_i = (float)set->y / (float)set->zoom + set->y_cadre;
-	printf ("\ncr : %f ci : %f ", set->c_r, set->c_i);
+	//printf ("\ncr : %f ci : %f ", set->c_r, set->c_i);
 	set->ite = 0;
 	set->z_r = 0;
 	set->z_i = 0;
@@ -63,9 +79,9 @@ int	ft_mandelbrot(t_data *set)
 	}
 	//printf("\n%d, %d yo",set->x, set->y);
 	if (set->ite == set->ite_max)
-		my_mlx_pixel_put(set, set->x, set->y, 0xffffffff);
+		my_mlx_pixel_put(set, set->x, set->y, 0x00000000);
 	else 
-		my_mlx_pixel_put(set, set->x, set->y, 0X00000000);
+		my_mlx_pixel_put(set, set->x, set->y, ft_color_int(set->ite));
 	//printf(" x^2 + y^2: %f, ite : %d\n",x*x + y*y, set->ite);
 
 	return (1);

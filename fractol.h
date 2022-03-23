@@ -6,7 +6,7 @@
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:33:48 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/22 18:34:15 by ldevy            ###   ########.fr       */
+/*   Updated: 2022/03/23 16:02:38 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef	struct s_data
 	float x_cadre;
 	float y_cadre;
 	float temp;
-	int zoom;
+	double zoom;
 	
 	
 	
