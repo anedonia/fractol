@@ -6,7 +6,7 @@
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:54:15 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/23 16:14:32 by ldevy            ###   ########.fr       */
+/*   Updated: 2022/03/23 16:32:23 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	mandelbrot_init(t_data *set)
 	set->x_cadre = -2;
 	set->y_cadre = -0.99;
 	set->ite_max = 200;
-	set->zoom = 1000;
+	set->zoom = 400;
 }
 
 int	create_trgb(int t, int r, int g, int b)

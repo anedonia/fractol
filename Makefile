@@ -6,7 +6,7 @@
 #    By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 17:24:43 by ldevy             #+#    #+#              #
-#    Updated: 2022/03/22 16:38:07 by ldevy            ###   ########.fr        #
+#    Updated: 2022/03/23 16:52:31 by ldevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CFLAGS	= -Wall -Wextra -Werror -g3
 all:		${NAME}
 
 .c.o:
-			${CC} -I/usr/include -Imlx -c $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} -I/usr/include -Imlx -c $< -o ${<:.c=.o}
 
 # pour mac
 # %.o: %.c

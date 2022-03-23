@@ -54,12 +54,22 @@ int	key_hook(int keycode, t_data *vars)
 	return (1);
 }
 
-int	mouse_hook(int mousecode, t_data *set)
+int	mouse_hook(int mousecode, int x, int y, t_data *set)
 {
+	(void)x;
+	(void)y;
+
 	if (mousecode == 5)
-		printf("yo\n");
+	{
+		set->zoom *= 1.1;
+		set->ite_max++;
+	}
 	else if (mousecode == 4)
-		printf("man\n");
+	{
+		set->zoom /= 1.1;
+		set->ite_max--;
+	}
+	ft_calc(set);
 	return (0);
 }
 

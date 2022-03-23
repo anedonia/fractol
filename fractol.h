@@ -6,15 +6,13 @@
 /*   By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:33:48 by ldevy             #+#    #+#             */
-/*   Updated: 2022/03/23 16:02:38 by ldevy            ###   ########.fr       */
+/*   Updated: 2022/03/23 16:22:12 by ldevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_OL
 # define FRACT_OL
 # include "mlx/mlx.h"
-# include "libft_main/libft.h"
-# include "printf_main/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
