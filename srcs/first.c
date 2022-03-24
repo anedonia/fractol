@@ -33,8 +33,8 @@ int	ft_close(t_data *data)
 void	init_mlx(t_data *set)
 {
 	set->mlx = mlx_init();
-	set->mlx_win = mlx_new_window(set->mlx, 400, 400, set->type);
-	set->img = mlx_new_image(set->mlx, 400, 400);
+	set->mlx_win = mlx_new_window(set->mlx, WIDTH, WIDTH, set->type);
+	set->img = mlx_new_image(set->mlx, WIDTH, WIDTH);
 	set->addr = mlx_get_data_addr(set->img, &set->bits_per_pixel, &set->line_length, &set->endian);
 }
 
@@ -43,32 +43,43 @@ int	key_hook(int keycode, t_data *vars)
 	if (keycode == 65307)
 		ft_close(vars);
 	else if (keycode == 65362)
-		vars->y_cadre += 100 * vars->y_cadre/vars->zoom; 
+		vars->y_cadre -= 10 / vars->zoom; 
 	else if (keycode == 65364)
-		vars->y_cadre -= 100 * vars->y_cadre/vars->zoom; 
+		vars->y_cadre += 10 / vars->zoom; 
 	else if (keycode == 65363)
-		vars->x_cadre -= 50 * vars->x_cadre/vars->zoom; 
+		vars->x_cadre += 10 / vars->zoom; 
 	else if (keycode == 65361)
-		vars->x_cadre += 50 * vars->x_cadre/vars->zoom; 
+		vars->x_cadre -= 10 / vars->zoom; 
+	//printf("x : %Lf  y : %Lf\n", vars->x_cadre, vars->y_cadre);
 	ft_calc(vars);
 	return (1);
 }
 
+void	ft_zoom(int x, int y, t_data *set)
+{
+	set->y_cadre = (y / set->zoom + set->y_cadre) - (y / (set->zoom * 1.1));
+	set->x_cadre = (x / set->zoom + set->x_cadre) - (x / (set->zoom * 1.1)); 
+	set->zoom *= 1.1;
+	set->ite_max++;
+	//printf("x : %Lf  y : %Lf, zoom : %Lf\n", set->x_cadre, set->y_cadre, set->zoom);
+}
+
+void	ft_dezoom(int x, int y, t_data *set)
+{
+
+	set->y_cadre = (y / set->zoom + set->y_cadre) - (y / (set->zoom / 1.1));
+	set->x_cadre = (x / set->zoom + set->x_cadre) - (x / (set->zoom / 1.1)); 
+	set->zoom /= 1.1;
+	set->ite_max--;
+	//printf("x : %Lf  y : %Lf, zoom : %Lf\n", set->x_cadre, set->y_cadre, set->zoom);
+}
+
 int	mouse_hook(int mousecode, int x, int y, t_data *set)
 {
-	(void)x;
-	(void)y;
-
 	if (mousecode == 5)
-	{
-		set->zoom *= 1.1;
-		set->ite_max++;
-	}
+		ft_zoom(x, y, set);
 	else if (mousecode == 4)
-	{
-		set->zoom /= 1.1;
-		set->ite_max--;
-	}
+		ft_dezoom(x, y, set);
 	ft_calc(set);
 	return (0);
 }

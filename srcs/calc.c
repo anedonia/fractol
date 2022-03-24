@@ -17,10 +17,10 @@
 void ft_calc(t_data *set)
 {
 	set->x = 0;
-	while (set->x < 400)
+	while (set->x < WIDTH)
 	{
 		set->y = 0;
-		while (set->y < 400)
+		while (set->y < WIDTH)
 		{
 			ft_mandelbrot(set);
 			set->y++;
@@ -34,8 +34,8 @@ void	mandelbrot_init(t_data *set)
 {
 	set->x_cadre = -2;
 	set->y_cadre = -0.99;
-	set->ite_max = 200;
-	set->zoom = 400;
+	set->ite_max = 100;
+	set->zoom = 300;
 }
 
 int	create_trgb(int t, int r, int g, int b)
@@ -63,9 +63,9 @@ int	ft_mandelbrot(t_data *set)
 	
 	x = 0;
 	y = 0;
-	set->c_r = (float)set->x / (float)set->zoom + set->x_cadre;
-	set->c_i = (float)set->y / (float)set->zoom + set->y_cadre;
-	//printf ("\ncr : %f ci : %f ", set->c_r, set->c_i);
+	set->c_r = (long double)set->x / set->zoom + set->x_cadre;
+	set->c_i = (long double)set->y / set->zoom + set->y_cadre;
+	//printf ("\ncr : %Lf ci : %Lf ", set->c_r, set->c_i);
 	set->ite = 0;
 	set->z_r = 0;
 	set->z_i = 0;

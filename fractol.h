@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <math.h>
-
+# define WIDTH 400
 typedef	struct s_data
 {
 	void *img;
@@ -33,18 +33,16 @@ typedef	struct s_data
 	int ite;
 	int x;
 	int y;
-	float c_r;
-	float c_i;
-	float z_r;
-	float z_i;
-	float x_cadre;
-	float y_cadre;
-	float temp;
-	double zoom;
-	
-	
-	
+	long double c_r;
+	long double c_i;
+	long double z_r;
+	long double z_i;
+	long double x_cadre;
+	long double y_cadre;
+	long double temp;
+	long double zoom;
 }	t_data;
+
 void	mandelbrot_init(t_data *set);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int	ft_mandelbrot(t_data *set);
