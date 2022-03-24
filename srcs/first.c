@@ -50,7 +50,7 @@ int	key_hook(int keycode, t_data *vars)
 		vars->x_cadre += 10 / vars->zoom; 
 	else if (keycode == 65361)
 		vars->x_cadre -= 10 / vars->zoom; 
-	//printf("x : %Lf  y : %Lf\n", vars->x_cadre, vars->y_cadre);
+	printf("x : %Lf  y : %Lf\n", vars->x_cadre, vars->y_cadre);
 	ft_calc(vars);
 	return (1);
 }

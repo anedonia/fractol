@@ -32,11 +32,20 @@ void ft_calc(t_data *set)
 
 void	mandelbrot_init(t_data *set)
 {
-	set->x_cadre = -2;
-	set->y_cadre = -0.99;
-	set->ite_max = 70;
-	set->zoom = WIDTH/2;
+	set->x_cadre = -1;
+	set->y_cadre = -1;
+	set->ite_max = 50;
+	set->c_r = 0.285;
+	set->c_i = 0.01;
+	set->zoom = WIDTH/3.8;
 }
+// void	mandelbrot_init(t_data *set)
+// {
+// 	set->x_cadre = -2;
+// 	set->y_cadre = -0.99;
+// 	set->ite_max = 70;
+// 	set->zoom = WIDTH/2;
+// }
 
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -57,31 +66,22 @@ int	ft_color_int(float ite)
 
 int	ft_mandelbrot(t_data *set)
 {
-	
-	float x;
-	float y;
-	
-	x = 0;
-	y = 0;
-	set->c_r = (long double)set->x / set->zoom + set->x_cadre;
-	set->c_i = (long double)set->y / set->zoom + set->y_cadre;
+	set->z_r = set->x / set->zoom + set->x_cadre;
+	set->z_i = set->y / set->zoom + set->y_cadre;
 	//printf ("\ncr : %Lf ci : %Lf ", set->c_r, set->c_i);
 	set->ite = 0;
-	set->z_r = 0;
-	set->z_i = 0;
-	set->temp = 0;
-	while (x*x + y*y <= 4 && set->ite < set->ite_max)
+	while (set->z_r * set->z_r + set->z_i * set->z_i < 4 && set->ite < set->ite_max)
 	{
-		set->temp = x*x - y*y + set->c_r;
-		y = 2*x*y + set->c_i;
-		x = set->temp;
+		set->temp = set->z_r;
+		set->z_r = set->z_r * set->z_r - set->z_i * set->z_i + set->c_r;
+		set->z_i = 2 * set->temp * set->z_i + set->c_i;
 		set->ite++;
 	}
 	//printf("\n%d, %d yo",set->x, set->y);
 	if (set->ite == set->ite_max)
 		my_mlx_pixel_put(set, set->x, set->y, 0x00000000);
 	else 
-		my_mlx_pixel_put(set, set->x, set->y, ft_color_int(set->ite));
+		my_mlx_pixel_put(set, set->x, set->y,ft_color_int(set->ite));
 	//printf(" x^2 + y^2: %f, ite : %d\n",x*x + y*y, set->ite);
 
 	return (1);
