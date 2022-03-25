@@ -6,12 +6,12 @@
 #    By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 17:24:43 by ldevy             #+#    #+#              #
-#    Updated: 2022/03/23 16:52:31 by ldevy            ###   ########.fr        #
+#    Updated: 2022/03/25 17:17:10 by ldevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRC = $(addprefix srcs/, main.c first.c calc.c)
+SRC = $(addprefix srcs/, main.c first.c fractals/burningship.c fractals/julia.c fractals/mandelbrot.c hooks/hooks.c tools/colors.c tools/tool.c)
 
 OBJS	= ${SRC:.c=.o}
 
@@ -21,30 +21,33 @@ RM		= rm -f
 
 CC		= cc
 
-LIBS	= /libft_main/libft.a, /printf_main/libftprintf.a
+LIBS 	= ft_printf/ft_printf.a
 
 CFLAGS	= -Wall -Wextra -Werror -g3
 
 all:		${NAME}
 
 .c.o:
-			${CC} ${CFLAGS} -I/usr/include -Imlx -c $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} -I/usr/include -I ft_printf -I libft -Imlx -c $< -o ${<:.c=.o}
 
 # pour mac
 # %.o: %.c
 # 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 ${NAME}:	${OBJS}
-			${CC} ${CFLAGS} ${OBJS} -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o ${NAME}
+			make -C ft_printf
+			${CC} ${CFLAGS} ${OBJS} ${LIBS} -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o ${NAME}
 
 #pour mac
 # $(NAME): $(OBJS)
 # 	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
+			make -C ft_printf clean
 			${RM} ${OBJS}
 
 fclean:		clean
+			make -C ft_printf fclean
 			${RM} ${NAME}
 
 re:			fclean all
