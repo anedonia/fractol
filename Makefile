@@ -6,7 +6,7 @@
 #    By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 17:24:43 by ldevy             #+#    #+#              #
-#    Updated: 2022/03/25 17:17:10 by ldevy            ###   ########.fr        #
+#    Updated: 2022/03/28 13:29:53 by ldevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ CC		= cc
 LIBS 	= ft_printf/ft_printf.a
 
 CFLAGS	= -Wall -Wextra -Werror -g3
+
+bonus: all
 
 all:		${NAME}
 
