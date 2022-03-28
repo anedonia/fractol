@@ -6,7 +6,7 @@
 #    By: ldevy <ldevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 17:24:43 by ldevy             #+#    #+#              #
-#    Updated: 2022/03/28 13:29:53 by ldevy            ###   ########.fr        #
+#    Updated: 2022/03/28 17:31:59 by ldevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ all:		${NAME}
 # 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 ${NAME}:	${OBJS}
+			make -C mlx
 			make -C ft_printf
 			${CC} ${CFLAGS} ${OBJS} ${LIBS} -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o ${NAME}
 
@@ -45,6 +46,7 @@ ${NAME}:	${OBJS}
 # 	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
+			make -C mlx clean
 			make -C ft_printf clean
 			${RM} ${OBJS}
 
@@ -54,4 +56,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
